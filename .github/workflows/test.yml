@@ -34,3 +34,7 @@ jobs:
         working-directory: ./frontend
         # run: npm run dev
         run: npm run build
+      
+      # 서비스 프로그램 올리기(nginx)
+      - name: nginx start
+        run: docker run -d -p 80:80 -v ./frontend/dist:/usr/share/nginx/html --name web nginx:1.28
