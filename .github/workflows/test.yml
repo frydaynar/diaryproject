@@ -74,10 +74,10 @@ jobs:
           docker rm -f back
           docker run -d -p 8001:8000 `
             --name back `
-            --link mariadb:db `
+            --link mariadb `
             -v ./backend:/workspace `
-            -e MARIADB_HOST=db `
-            -e MARIADB_PORT=3306 `
+            -e MARIADB_HOST=mariadb `
+            -e MARIADB_PORT=${{ secrets.MARIADB_PORT }} `
             -e MARIADB_USER=${{ secrets.MARIADB_USER }} `
             -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} `
             -e MARIADB_DATABASE=${{ secrets.MARIADB_DATABASE }} `
