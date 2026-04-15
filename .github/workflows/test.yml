@@ -49,7 +49,6 @@ jobs:
       # MariaDB 컨테이너 실행
       - name: MariaDB run
         run: |
-          docker rm -f diary-db
           docker run -d `
             --name diary-db `
             -p 23306:3306 `
