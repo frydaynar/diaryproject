@@ -71,7 +71,7 @@ jobs:
       # FastAPI 컨테이너 실행
       - name: fastapi run
         run: |
-          docker rm -f back || true
+          docker rm -f back
           docker run -d -p 8001:8000 `
             --name back `
             --link diary-db:db `
