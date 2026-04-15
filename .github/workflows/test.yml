@@ -47,17 +47,17 @@ jobs:
           docker run -d -p 80:80 -v ./frontend/dist:/usr/share/nginx/html -v ./frontend/default.conf:/etc/nginx/conf.d/default.conf --name web nginx:1.28
       
       # MariaDB 컨테이너 실행
-      - name: MariaDB run
-        run: |
-          docker rm -f diary-db
-          docker run -d `
-            --name diary-db `
-            -p 23306:3306 `
-            -e MARIADB_ROOT_PASSWORD=${{ secrets.MARIADB_ROOT_PASSWORD }} `
-            -e MARIADB_DATABASE=${{ vars.MARIADB_DATABASE }} `
-            -e MARIADB_USER=${{ vars.MARIADB_USER }} `
-            -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} `
-            mariadb:12.1.2
+      # - name: MariaDB run
+      #   run: |
+      #     docker rm -f diary-db
+      #     docker run -d `
+      #       --name diary-db `
+      #       -p 23306:3306 `
+      #       -e MARIADB_ROOT_PASSWORD=${{ secrets.MARIADB_ROOT_PASSWORD }} `
+      #       -e MARIADB_DATABASE=${{ vars.MARIADB_DATABASE }} `
+      #       -e MARIADB_USER=${{ vars.MARIADB_USER }} `
+      #       -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} `
+      #       mariadb:12.1.2
 
       # backend 이미지 생성
       - name: uv image build
