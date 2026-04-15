@@ -7,6 +7,7 @@ from langgraph_swarm import create_handoff_tool, create_swarm
 from src.db import save, findOne
 from src.settings import settings
 from src.models import DiaryItem
+from save_image import save_graph_image
 
 # ―――――――――――――――――――――――――― [ tool 및 유틸리티 정의 ] ――――――――――――――――――――――――――――――――――
 
@@ -154,6 +155,10 @@ def diary_swarm():
   )
 
   workflow = create_swarm([writer_agent, manager_agent], default_active_agent="Writer")
-  return workflow.compile()
+  # return workflow.compile()
+
+  compiled_graph = workflow.compile()
+  save_graph_image(compiled_graph)
+  return compiled_graph
 
 diary_agent = diary_swarm()

@@ -51,7 +51,7 @@ async def chat(query: DiaryRequest, state=Depends(get_app_state)):
 		# 1. 세션 유지 설정 (thread_id)
 		config = {"configurable": {"thread_id": "nara_diary_session"}}
 
-		# 2. 입력 구성 (Swarm 형식)
+		# 2. 입력 구성
 		inputs = {"messages": [{"role": "user", "content": query.input}]}
 
 		# 3. 에이전트 호출 (config -> 이전 대화 맥락 참조)
@@ -62,7 +62,7 @@ async def chat(query: DiaryRequest, state=Depends(get_app_state)):
 		raw_response = last_message.content
 		logger.info(f"Raw Agent Response: {raw_response}")
 
-		# 5. 응답이 비어있는 경우 파싱에러 방지
+		# 5. 응답이 비어있는 경우 파싱에러 방지 에휴
 		if not raw_response or not raw_response.strip():
 			# 마지막 메시지가 도구 호출(tool_calls)을 포함하고 있는지 확인
 			if hasattr(last_message, "tool_calls") and last_message.tool_calls:

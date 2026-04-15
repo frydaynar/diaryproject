@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     mariadb_host: str
     mariadb_database: str
     mariadb_port: int
+    graph_image_path: str = "images"
     
     model_config = SettingsConfigDict(
         env_file=".env",
