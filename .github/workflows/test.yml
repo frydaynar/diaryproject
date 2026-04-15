@@ -27,3 +27,8 @@ jobs:
       - name: npm install
         working-directory: ./frontend
         run: npm i
+      
+      # 실행하는 코드 (실행시키는 경로가 있어야 함)
+      - name: npm run
+        working-directory: ./frontend
+        run: npm run dev
