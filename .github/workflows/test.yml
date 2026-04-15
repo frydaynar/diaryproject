@@ -50,13 +50,13 @@ jobs:
       - name: MariaDB run
         run: |
           docker rm -f diary-db
-          docker run -d \
-            --name diary-db \
-            -p 23306:3306 \
-            -e MARIADB_ROOT_PASSWORD=${{ secrets.MARIADB_ROOT_PASSWORD }} \
-            -e MARIADB_DATABASE=${{ vars.MARIADB_DATABASE }} \
-            -e MARIADB_USER=${{ vars.MARIADB_USER }} \
-            -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} \
+          docker run -d `
+            --name diary-db `
+            -p 23306:3306 `
+            -e MARIADB_ROOT_PASSWORD=${{ secrets.MARIADB_ROOT_PASSWORD }} `
+            -e MARIADB_DATABASE=${{ vars.MARIADB_DATABASE }} `
+            -e MARIADB_USER=${{ vars.MARIADB_USER }} `
+            -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} `
             mariadb:12.1.2
 
       # backend 이미지 생성
@@ -72,15 +72,15 @@ jobs:
       - name: fastapi run
         run: |
           docker rm -f back || true
-          docker run -d -p 8001:8000 \
-            --name back \
-            --link diary-db:db \
-            -v ./backend:/workspace \
-            -e MARIADB_HOST=db \
-            -e MARIADB_PORT=${{ vars.MARIADB_PORT }} \
-            -e MARIADB_USER=${{ vars.MARIADB_USER }} \
-            -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} \
-            -e MARIADB_DATABASE=${{ vars.MARIADB_DATABASE }} \
-            -e OLLAMA_BASE_URL=${{ vars.OLLAMA_BASE_URL }} \
-            -e OLLAMA_MODEL_NAME=${{ vars.OLLAMA_MODEL_NAME }} \
+          docker run -d -p 8001:8000 `
+            --name back `
+            --link diary-db:db `
+            -v ./backend:/workspace `
+            -e MARIADB_HOST=db `
+            -e MARIADB_PORT=${{ vars.MARIADB_PORT }} `
+            -e MARIADB_USER=${{ vars.MARIADB_USER }} `
+            -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} `
+            -e MARIADB_DATABASE=${{ vars.MARIADB_DATABASE }} `
+            -e OLLAMA_BASE_URL=${{ vars.OLLAMA_BASE_URL }} `
+            -e OLLAMA_MODEL_NAME=${{ vars.OLLAMA_MODEL_NAME }} `
             uv:1
