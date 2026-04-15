@@ -7,9 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      runs-on: self-hosted
-      steps:
-        - name: Check PowerShell
-          run: $PSVersionTable
+      - name: Check PowerShell
+        run: $PSVersionTable
