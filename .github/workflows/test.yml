@@ -20,5 +20,10 @@ jobs:
         #   path: .
 
       # node 버전 확인
-      - name: Check Node.js version
-        run: node -v
+      # - name: Check Node.js version
+      #   run: node -v
+      
+      # node 모듈 다운로드 (`package.json`이 존재하는 경로가 필요함)
+      - name: npm install
+        working-directory: ./frontend
+        run: npm i
