@@ -29,6 +29,8 @@ jobs:
         run: npm i
       
       # 실행하는 코드 (실행시키는 경로가 있어야 함)
+      # 단, dev로 실행하면 대기상태로 계속되서 배포용으로 부적격 (강제 cancel)
       - name: npm run
         working-directory: ./frontend
-        run: npm run dev
+        # run: npm run dev
+        run: npm run build
