@@ -1,36 +1,39 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router';
+import InputPage from './pages/InputPage';
+import TimelinePage from './pages/TimelinePage';
+import DetailPage from './pages/DetailPage';
+import './App.css';
 
-const Home = () => {
+const Navigation = () => {
+  const location = useLocation();
   return (
-    <div className="text-center">
-      <h1>메인 화면입니다.</h1>
-    </div>
-  )
+    <nav className="app-nav">
+      <Link to="/" className={location.pathname === '/' ? 'active' : ''}>작성하기</Link>
+      <Link to="/timeline" className={location.pathname === '/timeline' ? 'active' : ''}>타임라인</Link>
+    </nav>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="app-container">
+        <header className="app-header">
+          <Link to="/" className="app-title">NARA's DIARY</Link>
+          <Navigation />
+        </header>
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<InputPage />} />
+            <Route path="/timeline" element={<TimelinePage />} />
+            <Route path="/post/:id" element={<DetailPage />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
+  );
 }
 
-const NotFound = () => {
-  return (
-    <div className="text-center">
-      <h1>404</h1>
-      <p>페이지를 찾을 수 없습니다.</p>
-    </div>
-  )
-}
-
-const App = () => {
-  const paths = [
-    { path: "/", element: <Home /> },
-    { path: "*", element: <NotFound /> },
-  ]
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          {paths?.map((v, i) => <Route key={i} path={v.path} element={v.element} />)}
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
-}
-
-export default App
+export default App;
