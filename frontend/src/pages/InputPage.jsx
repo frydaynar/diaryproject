@@ -16,7 +16,7 @@ const InputPage = () => {
 
     try {
       // 백엔드 API 호출 : 에이전트에게 일기 분석 및 저장 요청
-      const response = await axios.post('http://localhost:8000/chat', {
+      const response = await axios.post('http://aiedu.tplinkdns.com:6041/chat', {
         input: diaryText
       })
 

@@ -20,13 +20,13 @@ const DetailPage = () => {
 
   return (
     <div className="animate-fade-in detail-page">
-      <button 
-        className="back-btn" 
+      <button
+        className="back-btn"
         onClick={() => navigate(-1)}
       >
         ← 뒤로 가기
       </button>
-      
+
       <div className="timeline-card detail-card">
         <div className="card-header">
           <div className="card-avatar">{post.name.charAt(0)}</div>

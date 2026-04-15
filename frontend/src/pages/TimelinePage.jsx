@@ -43,7 +43,7 @@ const TimelinePage = () => {
   useEffect(() => {
     const fetchDiaries = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/diaries')
+        const response = await axios.get('http://aiedu.tplinkdns.com:6041/diaries')
         setDiaries(response.data)
       } catch (error) {
         console.error('목록 로딩 에러 : ', error)
