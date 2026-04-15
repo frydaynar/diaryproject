@@ -77,7 +77,7 @@ jobs:
             --link mariadb:db `
             -v ./backend:/workspace `
             -e MARIADB_HOST=db `
-            -e MARIADB_PORT=${{ secrets.MARIADB_PORT }} `
+            -e MARIADB_PORT=3306 `
             -e MARIADB_USER=${{ secrets.MARIADB_USER }} `
             -e MARIADB_PASSWORD=${{ secrets.MARIADB_PASSWORD }} `
             -e MARIADB_DATABASE=${{ secrets.MARIADB_DATABASE }} `
